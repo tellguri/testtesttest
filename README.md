@@ -17,19 +17,21 @@
   }
 </script>
 <style>
-  .fixed-footer {
+  .sticky-footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     background: white;
     padding: 1rem;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
   .item-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
+    padding-bottom: 4rem; /* Space for the fixed footer */
   }
   .item-container::-webkit-scrollbar {
     width: 2px;
@@ -49,19 +51,17 @@
 <div class="container mx-auto p-4">
   <div class="flex justify-between items-center">
     <h1 class="text-2xl font-bold mb-4 text-gray-800">Importing an image file from a computer</h1>
-    <button id="resetButton" class="bg-red-500 text-white px-4 py-2 rounded shadow" onclick="resetAll()">Reset</button>
   </div>
-  <div id="items" class="item-container mb-16">
+  <div id="items" class="item-container">
     <!-- Item template will be cloned here -->
   </div>
-  <div class="flex justify-center mt-4">
-    <button id="addItem" class="bg-custom-green text-white px-4 py-2 rounded shadow" onclick="addItem()">Add Item</button>
-  </div>
-  <div class="fixed-footer flex justify-between items-center">
+  <div class="sticky-footer flex justify-between items-center">
     <div>
       <p>Total Price: <span id="totalPrice">₩0</span></p>
     </div>
-    <div>
+    <div class="flex">
+      <button id="resetButton" class="bg-red-500 text-white px-4 py-2 rounded shadow mr-2" onclick="resetAll()">Reset</button>
+      <button id="addItem" class="bg-custom-green text-white px-4 py-2 rounded shadow mr-2" onclick="addItem()">Add Item</button>
       <input type="text" id="currentSales" placeholder="current sales" class="border p-2 rounded mr-2" readonly />
       <button id="okButton" class="bg-blue-500 text-white px-4 py-2 rounded shadow" onclick="finalizeSales()">ok</button>
     </div>
